@@ -1,4 +1,4 @@
-FROM eclipse-temurin:8-jre-alpine
+FROM alpine:latest AS build
 
 EXPOSE 8080
 
