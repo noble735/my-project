@@ -1,8 +1,9 @@
-FROM openjdk:8-jre-alpine
+FROM alpine:latest AS build
 
 EXPOSE 8080
 
-COPY ./build/libs/my-app-1.0-SNAPSHOT.jar /usr/app/
-WORKDIR /usr/app
+COPY  --from=build /home/gradle/src/build/libs/*.jar /app/demo-app.jar
+WORKDIR /home/gradle/src
 
-ENTRYPOINT ["java", "-jar", "my-app-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app/demo-app.jar"]
+
